@@ -10,3 +10,5 @@ A new Flutter project.
 4. Please do not use any external libraries for color generation
 5. Push code to a GitHub
 6. Send the link to a GitHub repository back
+
+## Addition fiture - doubletap generate random color for text
