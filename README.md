@@ -11,4 +11,4 @@ A new Flutter project.
 5. Push code to a GitHub
 6. Send the link to a GitHub repository back
 
-## Addition fiture - doubletap generate random color for text
+## Addition feature - doubletap generate random color for text
