@@ -18,10 +18,10 @@ class TestApp extends StatefulWidget {
 }
 
 class _TestAppState extends State<TestApp> {
-  final Random _random = Random();
-  Color _colorBG = Colors.black;
-  Color _colorText = Colors.white;
-  Color _colorAppbar = Colors.lime;
+  
+  Color _colorBG = _getColor();
+  Color _colorAppbar = _getColor();
+  Color _colorText = _getColorText();
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,10 @@ class _TestAppState extends State<TestApp> {
         setState(() {
           _colorBG = _getColor();
         });
-      },
+      },  
       onDoubleTap: () {
         setState(() {
-          _colorText = _getColor();
+          _colorText = _getColorText();
         });
       },
       onLongPress: () {
@@ -49,22 +49,91 @@ class _TestAppState extends State<TestApp> {
           backgroundColor: _colorAppbar,
         ),
         body: Center(
-          widthFactor: 10,
-          child: Text(
-            "Hey there!",
-            style: TextStyle(
-                fontSize: 44, fontWeight: FontWeight.bold, color: _colorText),
-          ),
-        ),
+            child: Wrap(
+              children: <Widget>[
+                Text(
+                  "H",
+                  style: TextStyle(
+                    fontSize: 44,
+                    fontWeight: FontWeight.bold,
+                    color: _getColorText(),
+                  ),
+                ),
+                Text(
+                  "e",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+                Text(
+                  "y ",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+               
+                Text(
+                  "t",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+                Text(
+                  "h",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+                Text(
+                  "e",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+                Text(
+                  "r",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+                Text(
+                  "e",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+                Text(
+                  "!",
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: _getColorText()),
+                ),
+              ],
+            )),
       ),
     );
   }
 
-  Color _getColor() {
+  static Color _getColor() {
+    final Random _random = Random();
     var col = Color.fromRGBO(
-        _random.nextInt(256), 
-        _random.nextInt(256), 
-        _random.nextInt(256), 1.0);
+        _random.nextInt(256), _random.nextInt(256), _random.nextInt(256), 1.0);
     return col;
   }
+
+    static Color _getColorText() {
+      final Random _random = Random();
+    var col = Color.fromRGBO(
+        _random.nextInt(256), _random.nextInt(256), _random.nextInt(256), 1.0);
+    return col;
+  }
+  
 }
