@@ -21,6 +21,7 @@ class _TestAppState extends State<TestApp> {
   final Random _random = Random();
   Color _colorBG = Colors.black;
   Color _colorText = Colors.white;
+  Color _colorAppbar = Colors.lime;
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +36,17 @@ class _TestAppState extends State<TestApp> {
           _colorText = _getColor();
         });
       },
+      onLongPress: () {
+        setState(() {
+          _colorAppbar = _getColor();
+        });
+      },
       child: Scaffold(
         backgroundColor: _colorBG,
         appBar: AppBar(
           title:
               const Text("Solid test", style: TextStyle(color: Colors.black87)),
-          backgroundColor: Colors.lime,
+          backgroundColor: _colorAppbar,
         ),
         body: Center(
           widthFactor: 10,
