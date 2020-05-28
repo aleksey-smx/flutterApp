@@ -11,6 +11,10 @@ A new Flutter project.
 5. Push code to a GitHub
 6. Send the link to a GitHub repository back
 
-## Addition features:
-1. Doubletap generate random color for text;
-2. Long press generate random color for appbar.
+## Features:
+1. On tap generate random color for text;
+2. On doubletap vibration.
+
+## Used packages:
+1. Provider [https://pub.dev/packages/provider]
+2. Vibration [https://pub.dev/packages/vibration]
