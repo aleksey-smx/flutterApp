@@ -1,6 +1,7 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:vibration/vibration.dart' as vibro;
 
 void main() => runApp(MyApp());
 
@@ -8,126 +9,49 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TestApp(),
-    );
-  }
-}
-
-class TestApp extends StatefulWidget {
-  @override
-  State createState() => _TestAppState();
-}
-
-class _TestAppState extends State<TestApp> {
-  Color _colorBG = _getColor();
-  Color _colorAppbar = _getColor();
-  // Color _colorText = _getColorText();
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _colorBG = _getColor();
-        });
-      },
-      // onDoubleTap: () {
-      //   setState(() {
-      //     _colorText = _getColorText();
-      //   });
-      // },
-      onLongPress: () {
-        setState(() {
-          _colorAppbar = _getColor();
-        });
-      },
-      child: Scaffold(
-        backgroundColor: _colorBG,
+      home: Scaffold(
         appBar: AppBar(
-          title: Text("Solid test", style: TextStyle(color: Colors.black87)),
-          backgroundColor: _colorAppbar,
+          title: Text('Solid Test'),
+          centerTitle: true,
         ),
-        body: Center(
-            child: Wrap(
-          children: <Widget>[
-            Text(
-              "H",
-              style: TextStyle(
-                fontSize: 44,
-                fontWeight: FontWeight.bold,
-                color: _getColorText(),
-              ),
-            ),
-            Text(
-              "e",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-            Text(
-              "y ",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-            Text(
-              "t",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-            Text(
-              "h",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-            Text(
-              "e",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-            Text(
-              "r",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-            Text(
-              "e",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-            Text(
-              "!",
-              style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorText()),
-            ),
-          ],
-        )),
+        body: ChangeNotifierProvider(
+            create: (_) => ColorChange(), child: TestApp()),
       ),
     );
   }
+}
 
-  static Color _getColor() {
-    final Random _random = Random();
-    var col = Color.fromRGBO(
-        _random.nextInt(256), _random.nextInt(256), _random.nextInt(256), 1.0);
-    return col;
+class TestApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    ColorChange state = Provider.of(context);
+    return GestureDetector(
+        child: Container(
+          color: Colors.amber,
+          child: Center(
+            child: Text("Hey There!",
+                style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.w300,
+                    color: state.textColor)),
+          ),
+        ),
+        onTap: () => state.generateColor(),
+        onDoubleTap: () => vibro.Vibration(),
+        );
   }
+}
 
-  static Color _getColorText() {
-    return _getColor();
+class ColorChange extends ChangeNotifier {
+  Color _color = Color.fromRGBO(math.Random().nextInt(255),
+      math.Random().nextInt(255), math.Random().nextInt(255), 1.0);
+
+
+  Color get textColor => _color; 
+
+  generateColor() {
+    _color = Color.fromRGBO(math.Random().nextInt(255),
+        math.Random().nextInt(255), math.Random().nextInt(255), 1.0);
+    notifyListeners();
   }
 }
